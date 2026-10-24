@@ -10,7 +10,8 @@
     "dev": "npm run sync-assets && wrangler dev",
     "deploy": "npm run sync-assets && wrangler deploy",
     "dry-run": "npm run sync-assets && wrangler deploy --dry-run",
-    "test": "node --test test/"
+    "test": "node --test test/",
+    "integrate": "node scripts/integration.js"
   },
   "engines": {
     "node": ">=22.13.0"

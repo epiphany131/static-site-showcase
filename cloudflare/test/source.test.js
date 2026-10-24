@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { normalizeSourcePath, inspectPath, listSourceFiles, readSourceFile } from '../src/source.js';
-import { createMockBucket } from './helpers/mock-bucket.js';
+import { createMockBucket } from '../test-helpers/mock-bucket.js';
 
 test('normalizeSourcePath 拒绝穿越、绝对路径与 NUL', () => {
   // 反斜杠归一后以 / 开头的路径同样视为绝对路径（与 Node 版 path.posix.isAbsolute 语义一致）

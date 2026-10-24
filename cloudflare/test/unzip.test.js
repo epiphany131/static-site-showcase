@@ -5,7 +5,7 @@ import {
   MAX_ENTRY_SIZE
 } from '../src/unzip.js';
 import { zipStream, crc32 } from '../src/zip.js';
-import { createMockBucket } from './helpers/mock-bucket.js';
+import { createMockBucket } from '../test-helpers/mock-bucket.js';
 
 const encoder = new TextEncoder();
 

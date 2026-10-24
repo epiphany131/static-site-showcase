@@ -62,7 +62,7 @@ Cloudflare 控制台的 Worker → Settings → Domains & Routes 中添加；平
 
 ```bash
 npm run dev          # wrangler dev，本地模拟 D1/R2/Assets，需先创建 .dev.vars
-node test/manual/integration.js http://127.0.0.1:8787
+node scripts/integration.js http://127.0.0.1:8787
 ```
 
 `.dev.vars` 参考格式（已被 `.gitignore` 排除，生产用 `wrangler secret put`）：
