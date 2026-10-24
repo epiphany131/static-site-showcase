@@ -1,3 +1,5 @@
+name: static-host-platform
+
 services:
   static-host:
     image: ${STATIC_HOST_IMAGE:-docker.io/epiphany131/static-site-showcase}:${IMAGE_TAG:-latest}
