@@ -35,11 +35,16 @@ jobs:
         run: npm ci --prefix cloudflare
 
       - name: Check JavaScript syntax
-        run: find . -type f -name '*.js' -not -path './node_modules/*' -print0 | xargs -0 -n1 node --check
+        run: find . -type f -name '*.js' -not -path './node_modules/*' -not -path './cloudflare/*' -print0 | xargs -0 -n1 node --check
+
+      - name: Build Cloudflare variant (syntax and bundling check)
+        run: npm run dry-run --prefix cloudflare
 
       - name: Run tests
         run: npm test
 
       - name: Audit production dependencies
         if: matrix.node-version == 24
-        run: npm audit --omit=dev --audit-level=high
+        run: |
+          npm audit --omit=dev --audit-level=high
+          npm audit --omit=dev --audit-level=high --prefix cloudflare

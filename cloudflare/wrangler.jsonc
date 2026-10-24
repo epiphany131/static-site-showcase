@@ -1,0 +1,35 @@
+// Cloudflare Workers 部署配置。
+// database_id 需在执行 `wrangler d1 create static-site-showcase` 后替换。
+// R2 桶需先执行 `wrangler r2 bucket create static-site-showcase`。
+{
+  "name": "static-site-showcase",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./assets",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "static-site-showcase",
+      "database_id": "REPLACE_WITH_D1_DATABASE_ID"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "BUCKET",
+      "bucket_name": "static-site-showcase"
+    }
+  ],
+  "vars": {
+    // PBKDF2-SHA256 迭代次数。Workers 付费计划（30s CPU）可直接使用默认值；
+    // 免费计划（10ms CPU）登录可能超时，可调低到 25000 左右。
+    "PBKDF2_ITERATIONS": "100000"
+  }
+  // Secrets（`wrangler secret put <NAME>`）：
+  //   LOGIN_CSRF_SECRET  登录双提交 CSRF 的 HMAC 密钥（任意 32+ 字节随机串）
+  //   ADMIN_USERNAME     首次初始化的管理员用户名（D1 空库时使用）
+  //   ADMIN_PASSWORD     首次初始化的管理员密码（D1 空库时使用，不设默认值）
+}
